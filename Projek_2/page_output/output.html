@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Graduation Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="output.css">
+</head>
+<body>
+    <audio id="welcome-sound" src="welcome.mp3" preload="auto"></audio>
+
+    <div class="background-video">
+        <video src="bg.mp4" autoplay muted loop></video>
+    </div>
+    <div class="main-content">
+        <!-- Dynamic Header for Pass/Fail -->
+        <div class="header" id="status-header">
+            <h1 id="status-text">Status Kelulusan</h1>
+        </div>
+        <div class="logo-container">
+            <img src="logoupi.png" alt="Logo Kiri" class="logo-left">
+            <img src="LOGO_PSTI.png" alt="Logo Kanan" class="logo-right">
+        </div>
+        <div class="content-section">
+            <!-- Student Details Section -->
+            <div class="student-details">
+                <h2>Detail Siswa</h2>
+                <p>Nama: <br> <span id="student-name" class="student-name"></span></p>
+                <p>NISN: <br> <span id="student-nisn" class="student-nisn"></span></p>
+                <p>Sekolah: <br> <span id="student-sekolah" class="student-sekolah"></span></p>
+            </div>
+
+            <!-- Subject Scores Section -->
+            <div class="scores-section">
+                <h2>Nilai Mata Pelajaran</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mata Pelajaran</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bahasa Indonesia</td>
+                            <td id="bIndonesia"></td>
+                        </tr>
+                        <tr>
+                            <td>Fisika</td>
+                            <td id="fisika"></td>
+                        </tr>
+                        <tr>
+                            <td>Kimia</td>
+                            <td id="kimia"></td>
+                        </tr>
+                        <tr>
+                            <td>Biologi</td>
+                            <td id="biologi"></td>
+                        </tr>
+                        <tr>
+                            <td>Sejarah Indonesia</td>
+                            <td id="sejarahIndonesia"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Result Information (Average Score) -->
+                <div class="result-info" id="average-score">
+                    Nilai Rata-rata: <span id="average-value"></span>
+                </div>
+            </div>
+        </div>
+        <div id="re-registration">
+            <p>Silakan lakukan ujian di <a href="https://ptn.go" target="_blank">ptn.go</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            var audio = document.getElementById('welcome-sound');
+            // Memutar audio
+            audio.play().catch(function(error) {
+                console.log("Autoplay mungkin diblokir oleh browser:", error);
+            });
+
+            // Ambil nilai dari localStorage
+            const nama = localStorage.getItem('nama');
+            const nisn = localStorage.getItem('nisn');
+            const sekolah = localStorage.getItem('sekolah');
+            const bIndonesia = localStorage.getItem('bIndonesia');
+            const fisika = localStorage.getItem('fisika');
+            const kimia = localStorage.getItem('kimia');
+            const biologi = localStorage.getItem('biologi');
+            const sejarahIndonesia = localStorage.getItem('sejarahIndonesia');
+    
+            // Mengubah nilai ke dalam bentuk angka
+            const nilai = [
+                parseFloat(bIndonesia),
+                parseFloat(fisika),
+                parseFloat(kimia),
+                parseFloat(biologi),
+                parseFloat(sejarahIndonesia)
+            ];
+    
+            // Set the exact inputted scores
+            document.getElementById('student-name').textContent = nama;
+            document.getElementById('student-nisn').textContent = nisn;
+            document.getElementById('student-sekolah').textContent = sekolah;
+            document.getElementById('bIndonesia').textContent = bIndonesia;
+            document.getElementById('fisika').textContent = fisika;
+            document.getElementById('kimia').textContent = kimia;
+            document.getElementById('biologi').textContent = biologi;
+            document.getElementById('sejarahIndonesia').textContent = sejarahIndonesia;
+    
+            // Convert 0-100 to 0-10 scale
+            const totalNilai = nilai.map(n => Math.round(n / 10));
+            const rataRata = Math.floor(totalNilai.reduce((a, b) => a + b, 0) / totalNilai.length); // Round down to whole number
+
+            // Set the average score
+            document.getElementById('average-value').textContent = rataRata;
+    
+            // Change the header color based on the average score
+            const headerElement = document.getElementById("status-header");
+            const statusTextElement = document.getElementById("status-text");
+    
+            // Determine pass/fail and header color
+            if (rataRata >= 8) {
+                headerElement.style.backgroundColor = "#28a745"; // Green for pass
+                statusTextElement.innerText = "SELAMAT ANDA DINYATAKAN LULUS SELEKSI!";
+            } else {
+                headerElement.style.backgroundColor = "#dc3545"; // Red for fail
+                statusTextElement.innerText = "MAAF ANDA DINYATAKAN TIDAK LULUS SELEKSI";
+            }
+        });
+    </script>
+</body>
+</html>

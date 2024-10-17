@@ -1,0 +1,151 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Background Style with Gradients and Sun */
+body {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    background-image: 
+        radial-gradient(circle at 50% 20%, rgba(103, 104, 152, 0.46), transparent), /* Matahari */
+        linear-gradient(135deg, #021629, #072032);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Menghilangkan scroll */
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container */
+.container {
+    width: 90%; /* Lebar container sedikit lebih kecil agar tidak terlalu lebar */
+    max-width: 800px; /* Batas maksimal untuk menghindari konten terlalu besar */
+    max-height: 95vh; /* Batas maksimal tinggi agar tidak keluar dari layar */
+    padding: 10px; /* Kurangi padding pada container */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0; /* Hilangkan margin bawah agar lebih dekat dengan form */
+}
+
+.logo img {
+    width: 80px; /* Ukuran logo diperkecil */
+}
+
+/* H2 Styling */
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0; /* Hilangkan margin pada H2 */
+}
+
+/* Form Input Data Siswa */
+.form-input {
+    margin-top: 15px; /* Jarak atas lebih kecil */
+    margin-bottom: 20px; /* Jarak bawah sedikit lebih kecil */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-input label {
+    width: 135px; /* Lebar label dikurangi */
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #333;
+    margin-right: 10px; /* Jarak antara label dan input */
+}
+
+.form-input input {
+    padding: 8px; /* Padding input dikurangi */
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: calc(93% - 140px); /* Sesuaikan lebar input */
+}
+
+/* Table Styling */
+table {
+    width: 92%; /* Lebar tabel diatur agar tidak melebihi container */
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #0a59ce;
+    color: white;
+    padding: 8px;
+}
+
+tbody td {
+    padding: 8px;
+    border: 1px solid #999393;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 6px; /* Padding lebih kecil */
+    border: 1px solid #999393;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="number"]:focus {
+    border-color: #0a59ce;
+    outline: none;
+}
+
+/* Button */
+button {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px; /* Padding dikurangi */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #ffffff98;
+    color: #5b94eb;
+    border: 2px solid #5b94eb;
+    margin-top: 12px;
+    margin-bottom: 7px;
+}
+
+button:hover {
+    background-color: #0a59ce;
+    color: #ffffff98;
+    transition: background-color 0.3s ease;
+}

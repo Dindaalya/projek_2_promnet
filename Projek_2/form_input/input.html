@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INPUT DATA SISWA</title>
+    <link rel="stylesheet" href="input.css">
+</head>
+<body>
+    <div class="background-video">
+        <video src="bg.mp4" autoplay muted loop></video>
+    </div>
+    <div class="container">
+        <div class="logo-container">
+            <!-- Logo on the left -->
+            <div class="logo">
+                <img src="logoupi.png" alt="Logo Kiri">
+            </div>
+            <h2>INPUT DATA SISWA</h2>
+            <!-- Logo on the right -->
+            <div class="logo">
+                <img src="LOGO_PSTI-removebg-preview.png" alt="Logo Kanan">
+            </div>
+        </div>
+        
+        <!-- Form Input Data Siswa -->
+        <div class="form-input">
+            <label for="nama">NAMA LENGKAP :</label>
+            <input type="text" id="nama" placeholder="Masukkan nama siswa" required>
+            
+            <label for="nisn">NISN :</label>
+            <input type="text" id="nisn" placeholder="Masukkan NISN" required>
+           
+            <label for="sekolah">SEKOLAH :</label>
+            <input type="text" id="sekolah" placeholder="Masukkan nama sekolah" required>
+        </div>
+
+        <!-- Tabel Input Nilai -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nomor</th>
+                    <th>Kode Mata Pelajaran</th>
+                    <th>Nama Mata Pelajaran</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>13141116</td>
+                    <td>Bahasa Indonesia</td>
+                    <td><input type="number" id="bIndonesia" min="0" max="100" required></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>13141111</td>
+                    <td>Fisika</td>
+                    <td><input type="number" id="fisika" min="0" max="100" required></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>13141189</td>
+                    <td>Kimia</td>
+                    <td><input type="number" id="kimia" min="0" max="100" required></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>13141199</td>
+                    <td>Biologi</td>
+                    <td><input type="number" id="biologi" min="0" max="100" required></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>13141234</td>
+                    <td>Sejarah Indonesia</td>
+                    <td><input type="number" id="sejarahIndonesia" min="0" max="100" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" onclick="lihatHasil()">Lihat Hasil</button>
+    </div>
+
+    <script>
+        function lihatHasil() {
+            const nama = document.getElementById('nama').value;
+            const nisn = document.getElementById('nisn').value;
+            const sekolah = document.getElementById('sekolah').value;
+
+            const nilai = [
+                parseFloat(document.getElementById('bIndonesia').value),
+                parseFloat(document.getElementById('fisika').value),
+                parseFloat(document.getElementById('kimia').value),
+                parseFloat(document.getElementById('biologi').value),
+                parseFloat(document.getElementById('sejarahIndonesia').value)
+            ];
+    
+            // Periksa apakah semua nilai valid
+            if (nilai.every(n => !isNaN(n)) && nama && nisn && sekolah) {
+                // Simpan nilai ke localStorage
+                localStorage.setItem('nama', nama);
+                localStorage.setItem('nisn', nisn);
+                localStorage.setItem('sekolah', sekolah);
+                localStorage.setItem('bIndonesia', nilai[0]);
+                localStorage.setItem('fisika', nilai[1]);
+                localStorage.setItem('kimia', nilai[2]);
+                localStorage.setItem('biologi', nilai[3]);
+                localStorage.setItem('sejarahIndonesia', nilai[4]);
+    
+                // Alihkan ke halaman hasil
+                window.location.href = '../page_output/output.html';
+            } else {
+                alert("Silakan masukkan semua nilai.");
+            }
+            return false; // Mencegah pengiriman form
+        }
+    </script>
+</body>
+</html>

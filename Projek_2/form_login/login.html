@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="background-video">
+        <video src="bg.mp4" autoplay muted loop></video>
+    </div>
+    <div class="login-container">
+        <div class="text-container">
+            <h2 class="text">Welcome</h2>
+            <h5>To Sistem Informasi Akademik</h5>
+            <p>Let's get you all set up, so you can verify your personal account and begin input your grade!</p>
+        </div>
+        <div class="login-right">
+            <div class="logo-container">
+                <img src="logoupi.png" alt="Logo UPI" class="logo">
+                <img src="LOGO_PSTI.png" alt="Logo PSTI" class="logo">
+            </div>            
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="nim">NISN</label>
+                    <input id="nim" name="nim" placeholder="Enter your NISN" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to all <a href="#">terms & conditions</a></label>
+                </div><br>
+                <button type="submit" class="login-btn">
+                    Log In
+                </button>
+                <div id="error-message" class="error-message"></div>
+                
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
